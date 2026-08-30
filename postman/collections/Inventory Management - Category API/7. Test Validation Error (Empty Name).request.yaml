@@ -1,0 +1,14 @@
+$kind: http-request
+description: Test validation error handling. Returns 400 Bad Request with validation errors.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "",
+        "description": "Missing category name"
+    }
+order: 7000

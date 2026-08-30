@@ -1,0 +1,14 @@
+$kind: http-request
+description: Update an existing category by its ID. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Consumer Electronics",
+        "description": "Updated description for electronics"
+    }
+order: 5000

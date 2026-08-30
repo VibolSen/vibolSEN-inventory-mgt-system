@@ -1,0 +1,14 @@
+$kind: http-request
+description: Create a new category. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Electronics",
+        "description": "Electronic devices, gadgets and accessories"
+    }
+order: 1000

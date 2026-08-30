@@ -1,0 +1,7 @@
+$kind: http-request
+description: Search categories by keyword match. Returns 200 OK.
+url: "{{baseUrl}}/search?name=Elec"
+method: GET
+queryParams:
+  name: Elec
+order: 4000

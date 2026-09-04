@@ -1,0 +1,4 @@
+$kind: collection
+description: Postman Collection for testing Product REST API in vibolSEN-inventory-mgt-system
+variables:
+  baseUrl: http://localhost:8080/api/v1/products

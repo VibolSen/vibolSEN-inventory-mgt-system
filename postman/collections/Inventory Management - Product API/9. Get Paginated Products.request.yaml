@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve products with pagination and sorting. Returns 200 OK with PagedResponse.
+url: "{{baseUrl}}/paged?page=0&size=10&sortBy=id&sortDir=asc"
+method: GET
+order: 9000

@@ -3,9 +3,11 @@ package com.vibolSEN.inventory_mgt_system.service.impl;
 import com.vibolSEN.inventory_mgt_system.dto.CategoryRequestDto;
 import com.vibolSEN.inventory_mgt_system.dto.CategoryResponseDto;
 import com.vibolSEN.inventory_mgt_system.exception.DuplicateResourceException;
+import com.vibolSEN.inventory_mgt_system.exception.ResourceInUseException;
 import com.vibolSEN.inventory_mgt_system.exception.ResourceNotFoundException;
 import com.vibolSEN.inventory_mgt_system.model.Category;
 import com.vibolSEN.inventory_mgt_system.repository.CategoryRepository;
+import com.vibolSEN.inventory_mgt_system.repository.ProductRepository;
 import com.vibolSEN.inventory_mgt_system.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     @Override
     @Transactional
@@ -73,6 +76,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void deleteCategory(Long id) {
         Category category = findCategoryById(id);
+        if (productRepository.existsByCategoryId(id)) {
+            throw new ResourceInUseException("Category", "id", id, "it contains associated products. Please reassign or delete the products first.");
+        }
         categoryRepository.delete(category);
     }
 

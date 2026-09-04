@@ -1,0 +1,24 @@
+$kind: http-request
+description: Create a new product. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Logitech MX Master 3S",
+        "sku": "SKU-LOGI-MX3S",
+        "barcode": "097855171733",
+        "description": "Advanced wireless mouse with quiet clicks and 8K DPI sensor",
+        "costPrice": 75.00,
+        "unitPrice": 99.99,
+        "stockQuantity": 50,
+        "minStockLevel": 10,
+        "unitOfMeasure": "PCS",
+        "status": "ACTIVE",
+        "categoryId": 1,
+        "supplierId": 1
+    }
+order: 1000

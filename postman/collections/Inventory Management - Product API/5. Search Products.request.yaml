@@ -1,0 +1,5 @@
+$kind: http-request
+description: Search products by name or SKU keyword. Returns 200 OK with matching products.
+url: "{{baseUrl}}/search?keyword=Logitech"
+method: GET
+order: 5000

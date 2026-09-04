@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve all products. Returns 200 OK with product list.
+url: "{{baseUrl}}"
+method: GET
+order: 2000

@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve a single product by ID. Returns 200 OK or 404 Not Found.
+url: "{{baseUrl}}/1"
+method: GET
+order: 3000

@@ -3,7 +3,9 @@ package com.vibolSEN.inventory_mgt_system.controller;
 import com.vibolSEN.inventory_mgt_system.dto.ApiResponse;
 import com.vibolSEN.inventory_mgt_system.dto.CategoryRequestDto;
 import com.vibolSEN.inventory_mgt_system.dto.CategoryResponseDto;
+import com.vibolSEN.inventory_mgt_system.dto.ProductResponseDto;
 import com.vibolSEN.inventory_mgt_system.service.CategoryService;
+import com.vibolSEN.inventory_mgt_system.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,11 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping({"/api/v1/categories", "/api/v1/category", "/api/v1/categorys"})
 @RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final ProductService productService;
 
     @PostMapping
     public ResponseEntity<ApiResponse<CategoryResponseDto>> createCategory(
@@ -68,5 +71,11 @@ public class CategoryController {
             @RequestParam(name = "name", required = false) String name) {
         List<CategoryResponseDto> categories = categoryService.searchCategoriesByName(name);
         return ResponseEntity.ok(ApiResponse.success("Categories search retrieved successfully", categories));
+    }
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity<ApiResponse<List<ProductResponseDto>>> getProductsByCategoryId(@PathVariable Long id) {
+        List<ProductResponseDto> products = productService.getProductsByCategory(id);
+        return ResponseEntity.ok(ApiResponse.success("Products retrieved successfully for category", products));
     }
 }

@@ -1,0 +1,24 @@
+$kind: http-request
+description: Update an existing product by ID. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Logitech MX Master 3S - Graphite",
+        "sku": "SKU-LOGI-MX3S-BLK",
+        "barcode": "097855171733",
+        "description": "Updated description: Ergonomic wireless mouse, 8K DPI sensor, Graphite color",
+        "costPrice": 70.00,
+        "unitPrice": 94.99,
+        "stockQuantity": 75,
+        "minStockLevel": 15,
+        "unitOfMeasure": "PCS",
+        "status": "ACTIVE",
+        "categoryId": 1,
+        "supplierId": 1
+    }
+order: 6000

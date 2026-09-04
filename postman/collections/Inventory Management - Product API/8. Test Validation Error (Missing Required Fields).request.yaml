@@ -1,0 +1,14 @@
+$kind: http-request
+description: Test validation error when required fields are missing. Returns 400 Bad Request with field errors.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "",
+        "sku": ""
+    }
+order: 8000

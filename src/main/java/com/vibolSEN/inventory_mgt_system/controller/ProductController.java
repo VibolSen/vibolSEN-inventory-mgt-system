@@ -39,7 +39,15 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<ProductResponseDto>>> getAllProducts() {
+    public ResponseEntity<ApiResponse<?>> getAllProducts(
+            @RequestParam(name = "page", required = false) Integer page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "sortBy", defaultValue = "id") String sortBy,
+            @RequestParam(name = "sortDir", defaultValue = "asc") String sortDir) {
+        if (page != null) {
+            PagedResponse<ProductResponseDto> pagedProducts = productService.getProductsPaginated(page, size, sortBy, sortDir);
+            return ResponseEntity.ok(ApiResponse.success("Products retrieved successfully (paginated)", pagedProducts));
+        }
         List<ProductResponseDto> products = productService.getAllProducts();
         return ResponseEntity.ok(ApiResponse.success("Products retrieved successfully", products));
     }

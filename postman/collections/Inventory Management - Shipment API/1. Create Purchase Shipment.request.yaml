@@ -1,0 +1,31 @@
+$kind: http-request
+description: Create a new purchase shipment order to a supplier. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "supplierId": 1,
+        "userId": 1,
+        "trackingNumber": "DHL-EXP-99221144",
+        "expectedDate": "2026-09-30",
+        "notes": "Bulk restock order for Q4",
+        "items": [
+            {
+                "productId": 1,
+                "orderedQuantity": 20,
+                "unitCost": 800.00,
+                "notes": "iPhone 15 Pro stock"
+            },
+            {
+                "productId": 2,
+                "orderedQuantity": 15,
+                "unitCost": 850.00,
+                "notes": "Galaxy S24 Ultra stock"
+            }
+        ]
+    }
+order: 1000

@@ -1,0 +1,19 @@
+$kind: http-request
+description: Create a new supplier. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Global Tech Distributors Ltd",
+        "contactPerson": "David Miller",
+        "email": "david.m@globaltech.com",
+        "phone": "+1 800 555 0199",
+        "address": "1200 Industrial Parkway, Austin, TX, USA",
+        "paymentTerms": "Net 30 Days",
+        "notes": "Authorized distributor for Apple, Samsung, and Dell hardware"
+    }
+order: 1000

@@ -1,0 +1,5 @@
+$kind: http-request
+description: Search suppliers by name, contact person, or email. Returns 200 OK.
+url: "{{baseUrl}}/search?keyword=Global"
+method: GET
+order: 4000

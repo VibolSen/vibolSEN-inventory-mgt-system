@@ -1,0 +1,16 @@
+$kind: http-request
+description: Update item quantity and discount in cart. Returns 200 OK.
+url: "{{baseUrl}}/1/items/1"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "productId": 2,
+        "quantity": 3,
+        "discountAmount": 15.00,
+        "notes": "Updated quantity"
+    }
+order: 5000

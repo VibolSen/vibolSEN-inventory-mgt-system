@@ -1,0 +1,19 @@
+$kind: http-request
+description: Record a manual inventory adjustment and update product balance. Returns 201 Created.
+url: "{{baseUrl}}/adjust"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "productId": 1,
+        "userId": 1,
+        "type": "ADJUSTMENT",
+        "quantity": 5,
+        "referenceType": "PHYSICAL_AUDIT",
+        "referenceId": "AUDIT-2026-Q3",
+        "notes": "Found extra 5 units during cycle count"
+    }
+order: 1000

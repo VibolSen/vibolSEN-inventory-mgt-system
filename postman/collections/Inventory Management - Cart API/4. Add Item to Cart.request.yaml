@@ -1,0 +1,16 @@
+$kind: http-request
+description: Add a product item to an existing cart. Returns 200 OK.
+url: "{{baseUrl}}/1/items"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "productId": 2,
+        "quantity": 2,
+        "discountAmount": 10.00,
+        "notes": "Promotional discount applied"
+    }
+order: 4000

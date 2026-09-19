@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve full audit trail for a specific product. Returns 200 OK.
+url: "{{baseUrl}}/product/1"
+method: GET
+order: 5000

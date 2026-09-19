@@ -1,0 +1,5 @@
+$kind: http-request
+description: Filter stock transactions by transaction type (PURCHASE, SALE, ADJUSTMENT, RETURN, DAMAGE, INITIAL). Returns 200 OK.
+url: "{{baseUrl}}?type=SALE"
+method: GET
+order: 3000

@@ -1,0 +1,19 @@
+$kind: http-request
+description: Register a new user/staff account. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "username": "cashier_john",
+        "password": "SecurePassword123!",
+        "fullName": "John Smith",
+        "email": "john.smith@store.com",
+        "phone": "+855 98 765 432",
+        "role": "CASHIER",
+        "status": "ACTIVE"
+    }
+order: 1000

@@ -1,0 +1,27 @@
+$kind: http-request
+description: Receive shipment items into warehouse. Increments Product stock and records StockTransaction. Returns 200 OK.
+url: "{{baseUrl}}/1/receive"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "items": [
+            {
+                "shipmentItemId": 1,
+                "receivedQuantity": 20,
+                "damagedQuantity": 0,
+                "notes": "Verified good condition"
+            },
+            {
+                "shipmentItemId": 2,
+                "receivedQuantity": 15,
+                "damagedQuantity": 0,
+                "notes": "Verified good condition"
+            }
+        ],
+        "notes": "Shipment received and inspected in main warehouse"
+    }
+order: 6000

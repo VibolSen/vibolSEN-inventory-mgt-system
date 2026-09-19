@@ -1,0 +1,5 @@
+$kind: http-request
+description: Toggle user account status (ACTIVE, INACTIVE, SUSPENDED). Returns 200 OK.
+url: "{{baseUrl}}/1/status?status=INACTIVE"
+method: PATCH
+order: 6000

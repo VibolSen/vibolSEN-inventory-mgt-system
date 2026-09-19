@@ -1,0 +1,19 @@
+$kind: http-request
+description: Update an existing supplier's details. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Global Tech Distributors Ltd (Updated)",
+        "contactPerson": "David Miller",
+        "email": "procurement@globaltech.com",
+        "phone": "+1 800 555 0199",
+        "address": "1200 Industrial Parkway, Austin, TX, USA",
+        "paymentTerms": "Net 45 Days",
+        "notes": "Updated contact email"
+    }
+order: 5000

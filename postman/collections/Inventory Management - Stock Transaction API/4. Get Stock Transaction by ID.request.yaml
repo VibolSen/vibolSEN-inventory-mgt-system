@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve transaction details by transaction ID. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: GET
+order: 4000

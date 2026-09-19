@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve all customers. Returns 200 OK.
+url: "{{baseUrl}}"
+method: GET
+order: 2000

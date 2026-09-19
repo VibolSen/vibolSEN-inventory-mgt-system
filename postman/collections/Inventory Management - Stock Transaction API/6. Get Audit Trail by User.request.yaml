@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve all stock transactions executed by a specific user. Returns 200 OK.
+url: "{{baseUrl}}/user/1"
+method: GET
+order: 6000

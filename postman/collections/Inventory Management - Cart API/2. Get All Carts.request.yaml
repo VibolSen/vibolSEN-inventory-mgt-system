@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve all active carts. Returns 200 OK.
+url: "{{baseUrl}}?status=ACTIVE"
+method: GET
+order: 2000

@@ -1,0 +1,5 @@
+$kind: http-request
+description: Update administrative notes on a sale order. Returns 200 OK.
+url: "{{baseUrl}}/1/notes?notes=Customer+requested+electronic+invoice+by+email"
+method: PATCH
+order: 8000

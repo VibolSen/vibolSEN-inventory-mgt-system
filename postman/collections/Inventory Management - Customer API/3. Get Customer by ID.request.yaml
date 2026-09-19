@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve a single customer by ID. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: GET
+order: 3000

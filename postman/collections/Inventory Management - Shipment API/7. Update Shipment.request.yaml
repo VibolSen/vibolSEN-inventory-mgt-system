@@ -1,0 +1,18 @@
+$kind: http-request
+description: Update shipment order metadata before receiving. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "supplierId": 1,
+        "userId": 1,
+        "trackingNumber": "DHL-EXP-99221144-REV",
+        "expectedDate": "2026-10-05",
+        "notes": "Expected date delayed by supplier logistics",
+        "items": []
+    }
+order: 7000

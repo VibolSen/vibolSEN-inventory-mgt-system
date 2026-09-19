@@ -1,0 +1,39 @@
+$kind: http-request
+description: Execute a sale order / checkout. Automatically deducts product stock and records StockTransaction. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "customerId": 1,
+        "userId": 1,
+        "customerName": "Sokha Mean",
+        "discountType": "PERCENTAGE",
+        "discountValue": 5.0,
+        "taxAmount": 0.00,
+        "notes": "In-store checkout with KHQR payment",
+        "items": [
+            {
+                "productId": 1,
+                "quantity": 1,
+                "discountAmount": 0.00
+            },
+            {
+                "productId": 4,
+                "quantity": 2,
+                "discountAmount": 0.00
+            }
+        ],
+        "payments": [
+            {
+                "paymentMethod": "KHQR",
+                "amount": 1234.03,
+                "referenceNumber": "KHQR-TXN-998877",
+                "notes": "Paid via Bakong KHQR"
+            }
+        ]
+    }
+order: 1000

@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve paginated stock transactions and audit trail. Returns 200 OK.
+url: "{{baseUrl}}?page=0&size=10&sortBy=id&sortDir=desc"
+method: GET
+order: 2000

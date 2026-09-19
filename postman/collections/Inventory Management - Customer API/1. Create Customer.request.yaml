@@ -1,0 +1,17 @@
+$kind: http-request
+description: Create a new customer. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Sokha Mean",
+        "email": "sokha.mean@example.com",
+        "phone": "+855 12 345 678",
+        "address": "Street 271, Phnom Penh, Cambodia",
+        "notes": "VIP Retail Customer"
+    }
+order: 1000

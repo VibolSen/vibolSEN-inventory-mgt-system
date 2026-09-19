@@ -1,0 +1,22 @@
+$kind: http-request
+description: Create a new POS cart session. Returns 201 Created.
+url: "{{baseUrl}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "customerId": 1,
+        "userId": 1,
+        "notes": "Walk-in retail checkout session",
+        "items": [
+            {
+                "productId": 1,
+                "quantity": 1,
+                "discountAmount": 0.00
+            }
+        ]
+    }
+order: 1000

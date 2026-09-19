@@ -1,0 +1,16 @@
+$kind: http-request
+description: Register an additional payment to a sale order. Returns 200 OK.
+url: "{{baseUrl}}/1/payments"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "paymentMethod": "CASH",
+        "amount": 50.00,
+        "referenceNumber": "CASH-RECEIPT-001",
+        "notes": "Remaining balance settled in cash"
+    }
+order: 7000

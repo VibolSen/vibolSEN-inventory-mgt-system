@@ -1,0 +1,5 @@
+$kind: http-request
+description: Add or deduct customer loyalty points. Returns 200 OK.
+url: "{{baseUrl}}/1/loyalty-points?points=50"
+method: PATCH
+order: 6000

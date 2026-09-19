@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve all shipments for a specific supplier. Returns 200 OK.
+url: "{{baseUrl}}/supplier/1"
+method: GET
+order: 5000

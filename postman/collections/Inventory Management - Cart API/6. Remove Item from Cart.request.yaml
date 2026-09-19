@@ -1,0 +1,5 @@
+$kind: http-request
+description: Remove an individual item from cart. Returns 200 OK.
+url: "{{baseUrl}}/1/items/1"
+method: DELETE
+order: 6000

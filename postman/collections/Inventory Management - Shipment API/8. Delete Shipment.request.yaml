@@ -1,0 +1,5 @@
+$kind: http-request
+description: Delete an unreceived purchase shipment. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: DELETE
+order: 8000

@@ -1,0 +1,17 @@
+$kind: http-request
+description: Update an existing user's details. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "fullName": "John Smith (Senior Cashier)",
+        "email": "john.senior@store.com",
+        "phone": "+855 98 765 432",
+        "role": "CASHIER",
+        "status": "ACTIVE"
+    }
+order: 5000

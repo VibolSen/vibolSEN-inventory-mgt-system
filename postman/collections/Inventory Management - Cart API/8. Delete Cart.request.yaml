@@ -1,0 +1,5 @@
+$kind: http-request
+description: Delete a cart session. Returns 200 OK.
+url: "{{baseUrl}}/1"
+method: DELETE
+order: 8000

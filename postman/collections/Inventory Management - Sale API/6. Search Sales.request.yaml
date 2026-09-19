@@ -1,0 +1,5 @@
+$kind: http-request
+description: Search sales by sale number or customer name. Returns 200 OK.
+url: "{{baseUrl}}/search?keyword=Sokha"
+method: GET
+order: 6000

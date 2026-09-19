@@ -1,0 +1,5 @@
+$kind: http-request
+description: Retrieve sale by invoice/sale number. Returns 200 OK.
+url: "{{baseUrl}}/number/SAL-20260919100000-1234"
+method: GET
+order: 4000

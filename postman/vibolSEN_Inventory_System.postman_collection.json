@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "vibolsen-inventory-mgt-system-collection",
+		"name": "vibolSEN Inventory Management System API",
+		"description": "Complete REST API collection for vibolSEN Inventory Management System hosted on Render & local.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://vibolsen-inventory-mgt-system.onrender.com",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Health & Actuator",
+			"item": [
+				{
+					"name": "System Health & DB Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Verifies that Spring Boot and TiDB MySQL database connections are healthy (UP)."
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "categories"]
+						}
+					}
+				},
+				{
+					"name": "Get Category by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "categories", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Smart Home Appliances\",\n    \"description\": \"Smart home ecosystem, smart plugs, sensors\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "categories"]
+						}
+					}
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Smart Home Appliances (Updated)\",\n    \"description\": \"Updated description\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "categories", "1"]
+						}
+					}
+				},
+				{
+					"name": "Search Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/search?name=Electronics",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "categories", "search"],
+							"query": [{ "key": "name", "value": "Electronics" }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "products"]
+						}
+					}
+				},
+				{
+					"name": "Get Paginated Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products?page=0&size=10&sortBy=id&sortDir=asc",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "products"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "10" },
+								{ "key": "sortBy", "value": "id" },
+								{ "key": "sortDir", "value": "asc" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "products", "1"]
+						}
+					}
+				},
+				{
+					"name": "Search Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/search?keyword=iPhone",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "products", "search"],
+							"query": [{ "key": "keyword", "value": "iPhone" }]
+						}
+					}
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Wireless Mechanical Keyboard RGB\",\n    \"sku\": \"SKU-KB-999\",\n    \"barcode\": \"885100099901\",\n    \"description\": \"75% wireless mechanical keyboard with hot-swappable switches\",\n    \"costPrice\": 55.00,\n    \"unitPrice\": 89.99,\n    \"stockQuantity\": 50,\n    \"minStockLevel\": 10,\n    \"unitOfMeasure\": \"PCS\",\n    \"status\": \"ACTIVE\",\n    \"categoryId\": 1,\n    \"supplierId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "products"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Customers",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sokha Mean\",\n    \"email\": \"sokha.mean@example.com\",\n    \"phone\": \"+855 12 345 678\",\n    \"address\": \"Street 271, Phnom Penh, Cambodia\",\n    \"notes\": \"VIP Retail Customer\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/customers",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "customers"]
+						}
+					}
+				},
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/customers",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "customers"]
+						}
+					}
+				},
+				{
+					"name": "Get Customer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/customers/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "customers", "1"]
+						}
+					}
+				},
+				{
+					"name": "Adjust Loyalty Points",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/customers/1/loyalty-points?points=100",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "customers", "1", "loyalty-points"],
+							"query": [{ "key": "points", "value": "100" }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Suppliers",
+			"item": [
+				{
+					"name": "Create Supplier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Global Tech Supply Co\",\n    \"contactPerson\": \"David Miller\",\n    \"email\": \"sales@globaltech.com\",\n    \"phone\": \"+1 800 555 0199\",\n    \"address\": \"1200 Industrial Pkwy, Austin, TX\",\n    \"paymentTerms\": \"Net 30 Days\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/suppliers",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "suppliers"]
+						}
+					}
+				},
+				{
+					"name": "Get All Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/suppliers",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "suppliers"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"cashier_sarah\",\n    \"password\": \"Pass1234!\",\n    \"fullName\": \"Sarah Conor\",\n    \"email\": \"sarah.conor@store.com\",\n    \"phone\": \"+855 11 222 333\",\n    \"role\": \"CASHIER\",\n    \"status\": \"ACTIVE\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "users"]
+						}
+					}
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "users"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "7. POS Carts",
+			"item": [
+				{
+					"name": "Create Cart Session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": 1,\n    \"userId\": 1,\n    \"notes\": \"POS Session 1\",\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 1,\n            \"discountAmount\": 0.00\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "carts"]
+						}
+					}
+				},
+				{
+					"name": "Get Active Carts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts?status=ACTIVE",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "carts"],
+							"query": [{ "key": "status", "value": "ACTIVE" }]
+						}
+					}
+				},
+				{
+					"name": "Add Item to Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 2,\n    \"quantity\": 2,\n    \"discountAmount\": 10.00\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts/1/items",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "carts", "1", "items"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "8. Sales (POS Checkout)",
+			"item": [
+				{
+					"name": "Create Sale (Checkout)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": 1,\n    \"userId\": 1,\n    \"customerName\": \"Sokha Mean\",\n    \"discountType\": \"PERCENTAGE\",\n    \"discountValue\": 5.0,\n    \"taxAmount\": 0.00,\n    \"notes\": \"In-store sale checkout\",\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 1,\n            \"discountAmount\": 0.00\n        }\n    ],\n    \"payments\": [\n        {\n            \"paymentMethod\": \"KHQR\",\n            \"amount\": 949.05,\n            \"referenceNumber\": \"BAKONG-TX-10023\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "sales"]
+						}
+					}
+				},
+				{
+					"name": "Get All Sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sales?page=0&size=10&sortBy=id&sortDir=desc",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "sales"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "10" },
+								{ "key": "sortBy", "value": "id" },
+								{ "key": "sortDir", "value": "desc" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Sale by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sales/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "sales", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "9. Shipments (Procurement)",
+			"item": [
+				{
+					"name": "Create Purchase Shipment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"supplierId\": 1,\n    \"userId\": 1,\n    \"trackingNumber\": \"DHL-99221144\",\n    \"expectedDate\": \"2026-09-30\",\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"orderedQuantity\": 10,\n            \"unitCost\": 800.00\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/shipments",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "shipments"]
+						}
+					}
+				},
+				{
+					"name": "Get All Shipments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/shipments",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "shipments"]
+						}
+					}
+				},
+				{
+					"name": "Receive Shipment into Warehouse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"shipmentItemId\": 1,\n            \"receivedQuantity\": 10,\n            \"damagedQuantity\": 0,\n            \"notes\": \"Received in perfect condition\"\n        }\n    ],\n    \"notes\": \"All goods received and stock updated\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/shipments/1/receive",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "shipments", "1", "receive"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "10. Stock Transactions (Audit)",
+			"item": [
+				{
+					"name": "Record Stock Adjustment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 1,\n    \"userId\": 1,\n    \"type\": \"ADJUSTMENT\",\n    \"quantity\": 5,\n    \"referenceType\": \"CYCLE_COUNT\",\n    \"referenceId\": \"AUDIT-Q3-01\",\n    \"notes\": \"Found 5 extra units during inventory audit\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/stock-transactions/adjust",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "stock-transactions", "adjust"]
+						}
+					}
+				},
+				{
+					"name": "Get All Stock Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/stock-transactions?page=0&size=10&sortBy=id&sortDir=desc",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "stock-transactions"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "10" },
+								{ "key": "sortBy", "value": "id" },
+								{ "key": "sortDir", "value": "desc" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Audit Trail by Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/stock-transactions/product/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "stock-transactions", "product", "1"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

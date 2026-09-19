@@ -1,0 +1,14 @@
+target/
+.git/
+.gitignore
+.vscode/
+.postman/
+postman/
+*.log
+*.cmd
+Dockerfile
+.dockerignore
+render.yaml
+HELP.md
+README.md
+ERD Diagram.png

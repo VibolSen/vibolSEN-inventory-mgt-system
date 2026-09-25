@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,5 +105,11 @@ public class SaleController {
             @RequestParam(name = "notes") String notes) {
         SaleResponseDto updated = saleService.updateSaleNotes(id, notes);
         return ResponseEntity.ok(ApiResponse.success("Sale notes updated successfully", updated));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteSale(@PathVariable Long id) {
+        saleService.deleteSale(id);
+        return ResponseEntity.ok(ApiResponse.success("Sale deleted and inventory stock restored successfully"));
     }
 }

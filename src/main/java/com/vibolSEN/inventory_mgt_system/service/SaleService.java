@@ -27,4 +27,6 @@ public interface SaleService {
     List<SaleResponseDto> searchSales(String keyword);
 
     List<SaleResponseDto> getSalesByCustomerId(Long customerId);
+
+    void deleteSale(Long id);
 }

@@ -327,6 +327,47 @@ public class SaleServiceImpl implements SaleService {
                 .toList();
     }
 
+    @Override
+    @Transactional
+    public void deleteSale(Long id) {
+        Sale sale = findSaleById(id);
+
+        if (sale.getSaleItems() != null) {
+            for (SaleItem item : sale.getSaleItems()) {
+                Product product = item.getProduct();
+                if (product != null) {
+                    int restoredStock = product.getStockQuantity() + item.getQuantity();
+                    product.setStockQuantity(restoredStock);
+                    if (product.getStatus() == ProductStatus.OUT_OF_STOCK && restoredStock > 0) {
+                        product.setStatus(ProductStatus.ACTIVE);
+                    }
+                    productRepository.save(product);
+
+                    StockTransaction stockTx = StockTransaction.builder()
+                            .product(product)
+                            .user(sale.getUser())
+                            .type(StockTransactionType.RETURN)
+                            .quantityChanged(item.getQuantity())
+                            .balanceAfter(restoredStock)
+                            .referenceType("SALE_DELETION")
+                            .referenceId(sale.getSaleNumber())
+                            .notes("Reverted stock from deleted sale: " + sale.getSaleNumber())
+                            .build();
+                    stockTransactionRepository.save(stockTx);
+                }
+                saleItemRepository.delete(item);
+            }
+        }
+
+        if (sale.getSalePayments() != null) {
+            for (SalePayment payment : sale.getSalePayments()) {
+                salePaymentRepository.delete(payment);
+            }
+        }
+
+        saleRepository.delete(sale);
+    }
+
     private Sale findSaleById(Long id) {
         return saleRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Sale", "id", id));

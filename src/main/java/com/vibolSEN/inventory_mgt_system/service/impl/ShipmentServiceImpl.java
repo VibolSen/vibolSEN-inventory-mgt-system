@@ -38,10 +38,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -198,8 +198,12 @@ public class ShipmentServiceImpl implements ShipmentService {
             throw new IllegalStateException("Cannot receive a cancelled shipment");
         }
 
-        Map<Long, ShipmentItemReceiveDto> receiveMap = receiveRequestDto.getItems().stream()
-                .collect(Collectors.toMap(ShipmentItemReceiveDto::getShipmentItemId, itemDto -> itemDto));
+        Map<Long, ShipmentItemReceiveDto> receiveMap = new HashMap<>();
+        if (receiveRequestDto.getItems() != null) {
+            for (ShipmentItemReceiveDto itemDto : receiveRequestDto.getItems()) {
+                receiveMap.put(itemDto.getShipmentItemId(), itemDto);
+            }
+        }
 
         boolean allReceived = true;
 
